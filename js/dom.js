@@ -1,11 +1,11 @@
 const conteiner = document.getElementById("conteiner")
-const precios = [   { nombre: "Matambre", precioo: 3960},
-                    { nombre: "Bondiola", precioo: 4000 },
-                    { nombre: "Chorizo", precioo: 1280 },
-                    { nombre: "Pierna", precioo: 8500 },
-                    { nombre: "Paleta", precioo: 3100 },
-                    { nombre: "Costillar", precioo: 4160 },
-                    { nombre: "Carre", precioo: 3810 },]
+const precios = [   { nombre: "Matambre", precio: 3960},
+                    { nombre: "Bondiola", precio: 4000 },
+                    { nombre: "Chorizo", precio: 1280 },
+                    { nombre: "Pierna", precio: 8500 },
+                    { nombre: "Paleta", precio: 3100 },
+                    { nombre: "Costillar", precio: 4160 },
+                    { nombre: "Carre", precio: 3810 },]
 
 function cargarProducto () {
     productos.forEach ((producto)=>{

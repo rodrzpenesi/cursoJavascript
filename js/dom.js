@@ -57,10 +57,28 @@ function productoEnStock() {
     let siHay = productos.some((producto)=> {
         return producto.nombre === nombreProducto
     })
-    
     if (siHay === false) {
         alert("⛔️ No se encontró ese producto.")
     } else {
         alert("✅ El producto esta en stock.")
     }
+}
+
+function calcularDescuento(){
+    let valor = parseInt(prompt("ingrese el total de su pedido:"))
+    if (valor > 0){
+        let totalPedido = (valor * descuento)
+        console.log(totalPedido + "$ es el importe con descuento")
+    }else {
+        console.warn("el valor ingresado es incorrecto")
+    } 
+}
+function calcularInteres(){
+    let valor = parseInt(prompt("ingrese el total de su pedido:"))
+    if (valor > 0){
+        let totalPedido = (valor * interes)
+        console.log(totalPedido + "$ es el importe con intereses")
+    }else {
+        console.warn("el valor ingresado es incorrecto")
+    } 
 }

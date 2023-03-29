@@ -49,5 +49,18 @@ function productoComprar (){
     } else {
         console.warn("ese producto no se encuentra disponible")
     }
+}
 
+function productoEnStock() {
+    let nombreProducto = prompt("Ingresa el nombre del producto a buscar:").toUpperCase()
+    console.log(nombreProducto)
+    let siHay = productos.some((producto)=> {
+        return producto.nombre === nombreProducto
+    })
+    
+    if (siHay === false) {
+        alert("⛔️ No se encontró ese producto.")
+    } else {
+        alert("✅ El producto esta en stock.")
+    }
 }

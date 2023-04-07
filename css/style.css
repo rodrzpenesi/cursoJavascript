@@ -40,3 +40,4 @@ footer {
     border-radius: 15px;
     background-color: royalblue;
 }
+.cuadro { border: 1px blue dotted, padding: 10px 5px; }

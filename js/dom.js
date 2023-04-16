@@ -81,4 +81,10 @@ function calcularInteres(){
     }else {
         console.warn("el valor ingresado es incorrecto")
     } 
-}
+}   
+cargarProducto ();
+const btnSuccess = document.querySelector("button.btn-success")
+    btnSuccess.addEventListener("click" , ()=> {
+        location.href = "carrito.html"
+    }
+    )

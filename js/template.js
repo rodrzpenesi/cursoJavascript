@@ -10,7 +10,7 @@ function crearCard(producto){
                 <p>$${producto.precio}</p>
             </div>
             <div class="card-boton">
-                <button type="button" class="btn btn-success">Comprar</button>
+                <button type="button" class="btn btn-success" id=${producto.nombre}>Comprar</button>
             </div>
         </div>
     </div>`

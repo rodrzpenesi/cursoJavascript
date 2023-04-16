@@ -82,9 +82,19 @@ function calcularInteres(){
         console.warn("el valor ingresado es incorrecto")
     } 
 }   
+function activarBotonComprar() {
+    const botonComprar = document.querySelectorAll("button.btn.btn-success")
+        for (boton of botonComprar) {
+            boton.addEventListener ("click", (e)=> {
+                console.log(e.target.id)
+            })
+        }
+}
 cargarProducto ();
-const btnSuccess = document.querySelector("button.btn-success")
+activarBotonComprar();
+/*const btnSuccess = document.querySelector("button.btn-success")
     btnSuccess.addEventListener("click" , ()=> {
         location.href = "carrito.html"
     }
     )
+*/

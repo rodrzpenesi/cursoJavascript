@@ -86,7 +86,7 @@ function activarBotonComprar() {
     const botonComprar = document.querySelectorAll("button.btn.btn-success")
         for (boton of botonComprar) {
             boton.addEventListener ("click", (e)=> {
-                console.log(e.target.id)
+                console.log("usted quiere comprar "+ e.target.id)
             })
         }
 }

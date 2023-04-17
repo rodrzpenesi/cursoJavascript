@@ -87,14 +87,13 @@ function activarBotonComprar() {
         for (boton of botonComprar) {
             boton.addEventListener ("click", (e)=> {
                 console.log("usted quiere comprar "+ e.target.id)
-            })
-        }
-}
+                let resultadoCarrito = productos.find(producto => producto.nombre === (e.target.id))
+                    carrito.push(resultadoCarrito)
+                    guardarCarritoEnLocal ()
+        })
+}}       
+
+
 cargarProducto ();
 activarBotonComprar();
-/*const btnSuccess = document.querySelector("button.btn-success")
-    btnSuccess.addEventListener("click" , ()=> {
-        location.href = "carrito.html"
-    }
-    )
-*/
+

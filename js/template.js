@@ -15,3 +15,12 @@ function crearCard(producto){
         </div>
     </div>`
 }
+
+function crearCarritoCards(producto){
+    return `<div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="${producto.imagen}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Usted eligio comprar ${producto.nombre}</p>
+                </div>
+            </div>`
+}

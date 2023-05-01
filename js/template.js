@@ -20,7 +20,11 @@ function crearCarritoCards(producto){
     return `<div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="${producto.imagen}" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">Usted eligio comprar ${producto.nombre}</p>
+                    <p class="card-text">${producto.nombre}</p>
+                    <div inputCantidad> 
+                    <label for="cantidadProductos">INGRESA LA CANTIDAD:</label>
+                    <input type="number" id="cantidadProductos" value="1" min="1" max="5">
+                    </div>
                 </div>
             </div>`
 }

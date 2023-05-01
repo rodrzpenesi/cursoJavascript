@@ -20,6 +20,15 @@ footer {
         transition: 0.3s;
         margin:3rem;
         border-radius: 20px;}
+        .card-body{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .card-text{
+            display: flex;
+            justify-content: center;
+        }
         .card:hover {
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
             .img{
@@ -45,4 +54,35 @@ footer {
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
+}
+.carritoText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.botonPagar{
+    display: flex;
+    justify-content: center;
+}
+
+.checkoutPago{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.selecPago{
+    background-color: white;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px;
+    border-color: rgb(32, 32, 32);
+    border-radius: 0.7rem;
+}
+select {
+    min-width: 30% !important;
+    width: 30% !important;
+}
+input{
+    width: 15% !important;
 }

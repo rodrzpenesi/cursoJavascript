@@ -78,11 +78,10 @@ function calcularInteres(){
         console.warn("el valor ingresado es incorrecto")
     } 
 }   
-/* function activarBotonComprar() {
-    const botonComprar = document.querySelectorAll("button.btn.btn-success")
+function activarBotonComprar() {
+    const botonComprar = document.querySelectorAll("btn btn-success")
         for (boton of botonComprar) {
             boton.addEventListener ("click", (e)=> {
-                console.log("usted quiere comprar "+ e.target.id)
                 let resultadoCarrito = productos.find(producto => producto.nombre === (e.target.id))
                     carrito.push(resultadoCarrito)
                     guardarCarritoEnLocal ()
@@ -92,8 +91,6 @@ function calcularInteres(){
 
 
 activarBotonComprar();
-cargarProducto ();
-*/
 cargarProducto ()
 function cargarProducto () {
     productos.forEach ((producto)=>{

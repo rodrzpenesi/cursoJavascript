@@ -1,4 +1,4 @@
-/* const carrito = []
+const carrito = []
 
 function guardarCarritoEnLocal () {
     if (carrito.length>0){
@@ -15,4 +15,4 @@ function devolverCarrito () {
     }else{
         console.log("el carrito esta vacio.")
     }
-}*/
+}

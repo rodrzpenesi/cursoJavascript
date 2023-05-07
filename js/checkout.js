@@ -10,6 +10,7 @@ function cargarProductoCarrito () {
         })
     }
 }
+
 cargarProductoCarrito ()
 devolverCarrito ()*/
 const agregarProductCarrito = document.querySelectorAll('.card-boton');
@@ -24,16 +25,17 @@ function aggBtnClicked(event) {
     const cardImg = item.querySelector('.card-img').src;
     agregarItemCarrito(cardTitulo, cardPrecio, cardImg);
 }
-const shoppingCartItemsContainer = document.querySelector('.shoppingCartItemsContainer');
+
+const elementosCarritoCompra = document.querySelector('.elementosCarritoCompra');
 
 function agregarItemCarrito (cardTitulo, cardPrecio, cardImg) {
-    const elementsTitle = shoppingCartItemsContainer.getElementsByClassName(
+    const elementosCarrito = elementosCarritoCompra.getElementsByClassName(
         'shoppingCartItemTitle');
-    for (let i = 0; i < elementsTitle.length; i++) {
-        if (elementsTitle[i].innerText === cardTitulo) {
-            let elementQuantity = elementsTitle[i].parentElement.parentElement.parentElement.querySelector(
+    for (let i = 0; i < elementosCarrito.length; i++) {
+        if (elementosCarrito[i].innerText === cardTitulo) {
+            let cantidadProduct = elementosCarrito[i].parentElement.parentElement.parentElement.querySelector(
             '.shoppingCartItemQuantity');
-            elementQuantity.value++;
+            cantidadProduct.value++;
             calcularTotalCarrito();
         return;
     }
@@ -62,7 +64,7 @@ function agregarItemCarrito (cardTitulo, cardPrecio, cardImg) {
         </div>
     </div>`;
     carritoRow.innerHTML = shoppingCartContent;
-    shoppingCartItemsContainer.append(carritoRow);
+    elementosCarritoCompra.append(carritoRow);
     carritoRow
     .querySelector('.buttonDelete')
     .addEventListener('click', removeShoppingCartItem);
@@ -71,7 +73,7 @@ function removeShoppingCartItem(event) {
         buttonClicked.closest('.shoppingCartItem').remove();
         calcularTotalCarrito();
 }
-function quantityChanged(event) {
+function cambiarCantidad(event) {
     const input = event.target;
     input.value <= 0 ? (input.value = 1) : null;
     calcularTotalCarrito();
@@ -79,11 +81,11 @@ function quantityChanged(event) {
 
     carritoRow
     .querySelector('.shoppingCartItemQuantity')
-    .addEventListener('change', quantityChanged);
+    .addEventListener('change', cambiarCantidad);
 calcularTotalCarrito();
 function calcularTotalCarrito() {
         let total = 0;
-        const shoppingCartTotal = document.querySelector('.shoppingCartTotal');
+        const totalDelCarrito = document.querySelector('.shoppingCartTotal');
         const shoppingCartItems = document.querySelectorAll('.shoppingCartItem');
 
         shoppingCartItems.forEach((shoppingCartItem) => {
@@ -97,6 +99,6 @@ function calcularTotalCarrito() {
             shoppingCartItemQuantityElement.value);
           total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
         });
-        shoppingCartTotal.innerHTML = `$${total .toFixed(2)}`;
+        totalDelCarrito.innerHTML = `$${total .toFixed(2)}`;
 }
 };

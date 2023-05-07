@@ -7,11 +7,7 @@ const precios = [   { nombre: "Matambre", precio: 3960},
                     { nombre: "Costillar", precio: 4160 },
                     { nombre: "Carre", precio: 3810 },]
 
-function cargarProducto () {
-    productos.forEach ((producto)=>{
-        conteiner.innerHTML += crearCard(producto)
-    })
-}
+
 function calcularTotalPieza() {
     let precioProductos = productos.map((producto)=> {
         return {
@@ -82,7 +78,7 @@ function calcularInteres(){
         console.warn("el valor ingresado es incorrecto")
     } 
 }   
-function activarBotonComprar() {
+/* function activarBotonComprar() {
     const botonComprar = document.querySelectorAll("button.btn.btn-success")
         for (boton of botonComprar) {
             boton.addEventListener ("click", (e)=> {
@@ -94,6 +90,13 @@ function activarBotonComprar() {
 }}       
 
 
-cargarProducto ();
-activarBotonComprar();
 
+activarBotonComprar();
+cargarProducto ();
+*/
+cargarProducto ()
+function cargarProducto () {
+    productos.forEach ((producto)=>{
+        conteiner.innerHTML += crearCards(producto)
+    })
+}

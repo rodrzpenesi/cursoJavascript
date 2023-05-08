@@ -41,7 +41,7 @@ function agregarItemCarrito (cardTitulo, cardPrecio, cardImg) {
     }
 }
     const carritoRow = document.createElement('div');
-    const shoppingCartContent = `
+    const templateCards = `
 <div class="row shoppingCartItem">
         <div class="col-6">
             <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
@@ -63,12 +63,12 @@ function agregarItemCarrito (cardTitulo, cardPrecio, cardImg) {
             </div>
         </div>
     </div>`;
-    carritoRow.innerHTML = shoppingCartContent;
+    carritoRow.innerHTML = templateCards;
     elementosCarritoCompra.append(carritoRow);
     carritoRow
     .querySelector('.buttonDelete')
-    .addEventListener('click', removeShoppingCartItem);
-function removeShoppingCartItem(event) {
+    .addEventListener('click', removerItemCarrito);
+function removerItemCarrito(event) {
         const buttonClicked = event.target;
         buttonClicked.closest('.shoppingCartItem').remove();
         calcularTotalCarrito();
@@ -102,3 +102,9 @@ function calcularTotalCarrito() {
         totalDelCarrito.innerHTML = `$${total .toFixed(2)}`;
 }
 };
+function metodoDePago () {
+    let formaPago = document.getElementById('formaPago');
+    let metodoPago = formaPago.value;
+    document.getElementById('divPago').innerHTML = `usted ha seleccionado pagar con ${metodoPago} `
+}
+metodoDePago ()

@@ -105,6 +105,10 @@ function calcularTotalCarrito() {
 function metodoDePago () {
     let formaPago = document.getElementById('formaPago');
     let metodoPago = formaPago.value;
-    document.getElementById('divPago').innerHTML = `usted ha seleccionado pagar con ${metodoPago} `
+    document.getElementById('divPago').innerHTML = `USTED HA SELECCIONADO PAGAR CON ${metodoPago} `
+    infoPago();
 }
-metodoDePago ()
+function infoPago () {
+    document.getElementById ('divInfo').innerHTML = `PRONTO RECIBIRA UN EMAIL CON LOS PASOS A SEGUIR`
+    document.getElementById ('divGrax').innerHTML = `MUCHAS GRACIAS POR SU COMPRA <i class="bi bi-check"></i>`
+}

@@ -105,7 +105,7 @@ function calcularTotalCarrito() {
 function metodoDePago () {
     let formaPago = document.getElementById('formaPago');
     let metodoPago = formaPago.value;
-    document.getElementById('divPago').innerHTML = `USTED HA SELECCIONADO PAGAR CON ${metodoPago} `
+    document.getElementById('divPago').innerHTML = `USTED HA SELECCIONADO PAGAR CON ${metodoPago} <i class="bi bi-wallet2"></i> `
     infoPago();
 }
 function infoPago () {

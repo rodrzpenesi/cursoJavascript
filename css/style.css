@@ -126,6 +126,13 @@ footer {
     align-items: center;
     justify-content: center;
 }
-.input100{
+.input1{
     margin: 0.5rem;
+}
+.input1{
+    background-color: white;
+    padding: 10px;
+    border-color: rgb(32, 32, 32);
+    border-radius: 0.7rem;
+    border-style:ridge;
 }

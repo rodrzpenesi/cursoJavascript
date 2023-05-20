@@ -1,10 +1,3 @@
-/*const mainn = document.querySelector("main")
-
-devolverCarrito ()
-    guardarCarritoEnLocal ()
-    cargarProductoCarrito ()
-    devolverCarrito ()
-}*//*
 const agregarProductCarrito = document.querySelectorAll('.card-boton');
 agregarProductCarrito.forEach((addButton) => {
     addButton.addEventListener('click', aggBtnClicked);
@@ -17,6 +10,7 @@ function aggBtnClicked(event) {
     const cardPrecio = item.querySelector('.card-precio').textContent;
     const cardImg = item.querySelector('.card-img').src;
     agregarItemCarrito(cardTitulo, cardPrecio, cardImg);
+    actualizoStorage();
 }
 
 const elementosCarritoCompra = document.querySelector('.elementosCarritoCompra');
@@ -109,18 +103,8 @@ const guardarLocalCarrito = () => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
-/*
-function avtivarClick () {
-    const botonComprar = document.querySelector("btn.btn-success")
-        for (boton of botonComprar) {
-            boton.addEventListener("click", (e)=> {
-            let codigo = parseInt(e.target.id);
-            let productx = productos.find((prod)=> prod.id === codigo)
-            console.log(productx);
-        
-    })
-}}
-avtivarClick ()*/
+
+
 let carrito = []
 const contenedorItems = document.querySelector(".contenedor")
 const rowCardis = document.querySelector(".heroCarro")
@@ -139,7 +123,7 @@ contenedorItems.addEventListener("click" , (e)=>{
         if(exist){
             const productt = carrito.map(product=>{
                 if(product.nombre === infoProd.nombre){
-                    product.cantidad++;
+                    product.cantidad.value++;
                     return product;
                 }else{
                     return product;
@@ -149,35 +133,11 @@ contenedorItems.addEventListener("click" , (e)=>{
         }else{
             carrito = [... carrito, infoProd]
         }
-        creaHtml()
+
     }
 })
-function creaHtml(){
-    rowCardis.innerHTML="";
-    carrito.forEach(product =>{
-        const contenedorCarrito= document.createElement("div")
-        contenedorCarrito.classList.add("contenedor-carrito")
-        contenedorCarrito.innerHTML= `
-        <div class="row shoppingCartItem">
-                <div class="col-6">
-                    <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                        <img src=${product.img} class="shopping-cart-image">
-                        <h6 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">${product.nombre}</h6>
-                    </div>
-                </div>
-                <div class="col-2">
-                    <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                        <p class="item-price mb-0 shoppingCartItemPrice">${product.precio}</p>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div
-                        class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
-                        <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
-                            value="1">
-                        <button class="btn btn-danger buttonDelete" type="button">X</button>
-                    </div>
-                </div>
-            </div>`;
-            rowCardis.append(contenedorCarrito)
-    })}
+function actualizoStorage() { {
+    localStorage.setItem("carritoNew", JSON.stringify(carrito))
+}
+}
+

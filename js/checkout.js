@@ -93,7 +93,8 @@ function metodoDePago () {
     let formaPago = document.getElementById('formaPago');
     let metodoPago = formaPago.value;
     document.getElementById('divPago').innerHTML = `USTED HA SELECCIONADO PAGAR CON ${metodoPago} <i class="bi bi-wallet2"></i> `
-    infoPago();
+    infoPago()
+    actualizoStorage();
 }
 function infoPago () {
     document.getElementById ('divInfo').innerHTML = `PRONTO RECIBIRA UN EMAIL CON LOS PASOS A SEGUIR`

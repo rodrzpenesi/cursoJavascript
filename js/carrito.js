@@ -1,4 +1,3 @@
-const carrito = []
 
 function guardarCarritoEnLocal () {
     if (carrito.length>0){

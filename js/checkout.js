@@ -1,22 +1,15 @@
 /*const mainn = document.querySelector("main")
 
 devolverCarrito ()
-
-
-function cargarProductoCarrito () {
-    if(carrito.length>0){
-        carrito.forEach ((producto)=>{
-            mainn.innerHTML += crearCarritoCards(producto)
-        })
-    }
-}
-
-cargarProductoCarrito ()
-devolverCarrito ()*/
+    guardarCarritoEnLocal ()
+    cargarProductoCarrito ()
+    devolverCarrito ()
+}*//*
 const agregarProductCarrito = document.querySelectorAll('.card-boton');
 agregarProductCarrito.forEach((addButton) => {
     addButton.addEventListener('click', aggBtnClicked);
 });
+
 function aggBtnClicked(event) {
     const button = event.target;
     const item = button.closest('.card');
@@ -112,3 +105,79 @@ function infoPago () {
     document.getElementById ('divInfo').innerHTML = `PRONTO RECIBIRA UN EMAIL CON LOS PASOS A SEGUIR`
     document.getElementById ('divGrax').innerHTML = `MUCHAS GRACIAS POR SU COMPRA <i class="bi bi-check"></i>`
 }
+const guardarLocalCarrito = () => {
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
+/*
+function avtivarClick () {
+    const botonComprar = document.querySelector("btn.btn-success")
+        for (boton of botonComprar) {
+            boton.addEventListener("click", (e)=> {
+            let codigo = parseInt(e.target.id);
+            let productx = productos.find((prod)=> prod.id === codigo)
+            console.log(productx);
+        
+    })
+}}
+avtivarClick ()*/
+let carrito = []
+const contenedorItems = document.querySelector(".contenedor")
+const rowCardis = document.querySelector(".heroCarro")
+contenedorItems.addEventListener("click" , (e)=>{
+    if(e.target.classList.contains("btn")){
+        const product = e.target.parentElement.parentElement
+        console.log(product.querySelector("h4").innerText)
+        console.log(product.querySelector("p").innerText)
+        const infoProd = {
+            cantidad: 1,
+            nombre: product.querySelector("h4").innerText,
+            precio: product.querySelector("p").innerText,
+            img: product.querySelector("img").src,
+        };
+        const exist = carrito.some(product=> product.nombre === infoProd.nombre)
+        if(exist){
+            const productt = carrito.map(product=>{
+                if(product.nombre === infoProd.nombre){
+                    product.cantidad++;
+                    return product;
+                }else{
+                    return product;
+                }
+            })
+            carrito = [...productt]
+        }else{
+            carrito = [... carrito, infoProd]
+        }
+        creaHtml()
+    }
+})
+function creaHtml(){
+    rowCardis.innerHTML="";
+    carrito.forEach(product =>{
+        const contenedorCarrito= document.createElement("div")
+        contenedorCarrito.classList.add("contenedor-carrito")
+        contenedorCarrito.innerHTML= `
+        <div class="row shoppingCartItem">
+                <div class="col-6">
+                    <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                        <img src=${product.img} class="shopping-cart-image">
+                        <h6 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">${product.nombre}</h6>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                        <p class="item-price mb-0 shoppingCartItemPrice">${product.precio}</p>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div
+                        class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
+                        <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
+                            value="1">
+                        <button class="btn btn-danger buttonDelete" type="button">X</button>
+                    </div>
+                </div>
+            </div>`;
+            rowCardis.append(contenedorCarrito)
+    })}

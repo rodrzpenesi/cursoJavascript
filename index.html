@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <script src="./js/productos.js"></script>
     <script src="./js/template.js"></script>
     <script src="./js/carrito.js"></script>
     <script defer src="./js/dom.js"></script>
@@ -45,7 +44,7 @@
             <div class="contenedor" id="conteiner">
             </div>
         </section>
-        <div class="carritoText"><h1>PRODUCTOS QUE TIENE EN SU CARRITO</H1></div>
+        <div class="carritoText"><h1>PRODUCTOS EN EL CARRITO</H1></div>
         <section class="shopping-cart">
             <div class="container">
                 <div class="row">
@@ -65,7 +64,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="shopping-cart-items elementosCarritoCompra" id="carritoCompra">
+                <div class="row shopping-cart-items elementosCarritoCompra" id="carritoCompra">
+                    <div class="shopping-cart-items elementosCarritoCompra" id="conteinerC">
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -86,7 +87,7 @@
                                 </div>
                             </div>
                             <button class="btn btn-success ml-auto comprarButton"  id="miBoton"  type="button" data-toggle="modal"
-                            data-target="#comprarModal" >Comprar</button> 
+                            data-target="#comprarModal" >Agregar</button> 
                             <!--<button class="btn btn-danger ml-auto comprarButton"  id="miBotonVaciar"  type="button" >Vaciar</button>-->
                         </div>
                     </div>

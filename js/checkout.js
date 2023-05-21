@@ -1,14 +1,14 @@
-const agregarProductCarrito = document.querySelectorAll('.card-boton');
+const agregarProductCarrito = document.querySelectorAll('.shopping-cart-quantity');
 agregarProductCarrito.forEach((addButton) => {
     addButton.addEventListener('click', aggBtnClicked);
 });
 
 function aggBtnClicked(event) {
     const button = event.target;
-    const item = button.closest('.card');
-    const cardTitulo = item.querySelector('.card-titulo').textContent;
-    const cardPrecio = item.querySelector('.card-precio').textContent;
-    const cardImg = item.querySelector('.card-img').src;
+    const item = button.closest('.row');
+    const cardTitulo = item.querySelector('.shopping-cart-item-title').textContent;
+    const cardPrecio = item.querySelector('.shoppingCartItemPrice').textContent;
+    const cardImg = item.querySelector('.shopping-cart-image').src;
     agregarItemCarrito(cardTitulo, cardPrecio, cardImg);
 }
 
@@ -16,7 +16,7 @@ const elementosCarritoCompra = document.querySelector('.elementosCarritoCompra')
 
 function agregarItemCarrito (cardTitulo, cardPrecio, cardImg) {
     const elementosCarrito = elementosCarritoCompra.getElementsByClassName(
-        'shoppingCartItemTitle');
+        '.shoppingCartItemTitle');
     for (let i = 0; i < elementosCarrito.length; i++) {
         if (elementosCarrito[i].innerText === cardTitulo) {
             let cantidadProduct = elementosCarrito[i].parentElement.parentElement.parentElement.querySelector(
@@ -26,7 +26,7 @@ function agregarItemCarrito (cardTitulo, cardPrecio, cardImg) {
         return;
     }
 }
-    const carritoRow = document.createElement('div');
+    const carritoRow = document.querySelectorAll('shoppingCartItem');
     const templateCards = `
 <div class="row shoppingCartItem">
         <div class="col-6">
@@ -134,8 +134,10 @@ contenedorItems.addEventListener("click" , (e)=>{
                 }
             })
             carrito = [...productt]
+            
         }else{
             carrito = [... carrito, infoProd]
+            
         }
 
     }
@@ -157,36 +159,22 @@ botonVaciar.addEventListener("click", function() {
     carrito = [];
     actualizoStorage();
 });*/
-function cargarCarrito () {
-        const carritoRow2 = document.createElement('div');
-        const templateCards2 = `
-    <div class="row shoppingCartItem">
-            <div class="col-6">
-                <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                    <img src=${carrito.img} class="shopping-cart-image">
-                    <h6 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">${carrito.nombre}</h6>
-                </div>
-            </div>
-            <div class="col-2">
-                <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                    <p class="item-price mb-0 shoppingCartItemPrice">${carrito.precio}</p>
-                </div>
-            </div>
-            <div class="col-4">
-                <div
-                    class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
-                    <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
-                        value="1">
-                    <button class="btn btn-danger buttonDelete" type="button">X</button>
-                </div>
-            </div>
-        </div>`;
-        carritoRow2.innerHTML = templateCards2;
-        elementosCarritoCompra.append(carritoRow2);
-}
 function recuperoStorage() {
     let carritoRecupero = localStorage.getItem("carrito")
     if (carritoRecupero!== null) {
         const carritoDeStorage = JSON.parse(carritoRecupero)
         carrito.push(...carritoDeStorage)
 }}
+const url = "js/productos.json"
+const productos =[]
+
+const obtenerProductos = () => {
+    fetch(url)
+        .then((Response)=>Response.json())
+        .then((data)=>productos.push(...data))
+        .then(()=>cargarProducto (productos))
+        .then(()=>cargarProducto2 (carrito))
+        .catch()
+}
+recuperoStorage();
+obtenerProductos();

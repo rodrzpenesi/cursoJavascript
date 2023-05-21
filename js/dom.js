@@ -1,4 +1,5 @@
 const conteiner = document.getElementById("conteiner")
+const conteiner2 = document.getElementById("conteinerC")
 const carrritoDiv = document.getElementById("carritoCompra")
 const precios = [   { nombre: "Matambre", precio: 3960},
                     { nombre: "Bondiola", precio: 4000 },
@@ -79,9 +80,13 @@ function calcularInteres(){
         console.warn("el valor ingresado es incorrecto")
     } 
 }
-cargarProducto ()
 function cargarProducto () {
     productos.forEach ((producto)=>{
         conteiner.innerHTML += crearCards(producto)
+    })
+}
+function cargarProducto2 () {
+    carrito.forEach ((carrito)=>{
+        conteiner2.innerHTML += crearCards2(carrito)
     })
 }

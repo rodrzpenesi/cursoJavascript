@@ -39,7 +39,7 @@ function crearCards2(carrito){
     <div class="col-4">
         <div
             class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
-            <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
+            <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number" id=${`carrito${carrito.nombre}`}
                 value="${carrito.cantidad}">
             <button class="btn btn-danger buttonDelete" id="botonBorrar" type="button">X</button>
         </div>

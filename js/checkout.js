@@ -112,36 +112,51 @@ function infoPago () {
 let carrito = []
 const contenedorItems = document.querySelector(".contenedor")
 const rowCardis = document.querySelector(".heroCarro")
+
+
 contenedorItems.addEventListener("click" , (e)=>{
+
+
     if(e.target.classList.contains("btn")){
+
         const product = e.target.parentElement.parentElement
-        console.log(product.querySelector("h4").innerText)
-        console.log(product.querySelector("p").innerText)
-        const infoProd = {
+      
+
+        const productoSeleccionado = {
             cantidad: 1,
             nombre: product.querySelector("h4").innerText,
             precio: product.querySelector("p").innerText,
             img: product.querySelector("img").src,
+            rendered: false
         };
-        const exist = carrito.some(product=> product.nombre === infoProd.nombre)
+        
+        const exist = carrito.some(product=> product.nombre === productoSeleccionado.nombre)
+
         if(exist){
-            const productt = carrito.map(product=>{
-                if(product.nombre === infoProd.nombre){
-                    product.cantidad++;
-                    return product;
-                }else{
-                    return product;
-                }
-            })
-            carrito = [...productt]
+            const indiceEnElCarrito = carrito.findIndex(product => product.nombre === productoSeleccionado.nombre)
+            const nuevoCarrito = [...carrito] 
+            nuevoCarrito[indiceEnElCarrito].cantidad +=1
+           
+            carrito = [...nuevoCarrito]
             
         }else{
-            carrito = [... carrito, infoProd]
+            carrito = [...carrito, productoSeleccionado]
             
         }
 
+
+        
+        cargarProducto2(carrito)
+        actualizarCantidad(carrito)
+        actualizarTotal(carrito)
+        
+
     }
 })
+
+
+
+
 function actualizoStorage() { {
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
@@ -154,16 +169,14 @@ let boton = document.getElementById("miBoton");
 boton.addEventListener("click", function() {
     actualizoStorage();
 });
-/*let botonVaciar = document.getElementById("miBotonVaciar");
-botonVaciar.addEventListener("click", function() {
-    carrito = [];
-    actualizoStorage();
-});*/
 function recuperoStorage() {
     let carritoRecupero = localStorage.getItem("carrito")
     if (carritoRecupero!== null) {
         const carritoDeStorage = JSON.parse(carritoRecupero)
-        carrito.push(...carritoDeStorage)
+        carrito = carritoDeStorage.map((item)=>{
+            return {...item, rendered:false}
+        })
+        // carrito.push(...carritoDeStorage)
 }}
 const url = "js/productos.json"
 const productos =[]

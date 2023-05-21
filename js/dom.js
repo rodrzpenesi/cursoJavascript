@@ -1,4 +1,5 @@
 const conteiner = document.getElementById("conteiner")
+const carrritoDiv = document.getElementById("carritoCompra")
 const precios = [   { nombre: "Matambre", precio: 3960},
                     { nombre: "Bondiola", precio: 4000 },
                     { nombre: "Chorizo", precio: 1280 },
@@ -77,20 +78,7 @@ function calcularInteres(){
     }else {
         console.warn("el valor ingresado es incorrecto")
     } 
-}   
-function activarBotonComprar() {
-    const botonComprar = document.querySelectorAll("btn btn-success")
-        for (boton of botonComprar) {
-            boton.addEventListener ("click", (e)=> {
-                let resultadoCarrito = productos.find(producto => producto.nombre === (e.target.id))
-                    carrito.push(resultadoCarrito)
-                    guardarCarritoEnLocal ()
-        })
-}}       
-
-
-
-activarBotonComprar();
+}
 cargarProducto ()
 function cargarProducto () {
     productos.forEach ((producto)=>{

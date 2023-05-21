@@ -10,7 +10,6 @@ function aggBtnClicked(event) {
     const cardPrecio = item.querySelector('.card-precio').textContent;
     const cardImg = item.querySelector('.card-img').src;
     agregarItemCarrito(cardTitulo, cardPrecio, cardImg);
-    actualizoStorage();
 }
 
 const elementosCarritoCompra = document.querySelector('.elementosCarritoCompra');
@@ -59,6 +58,8 @@ function removerItemCarrito(event) {
         const buttonClicked = event.target;
         buttonClicked.closest('.shoppingCartItem').remove();
         calcularTotalCarrito();
+        removeArray();
+
 }
 function cambiarCantidad(event) {
     const input = event.target;
@@ -84,7 +85,7 @@ function calcularTotalCarrito() {
             '.shoppingCartItemQuantity');
             const shoppingCartItemQuantity = Number(
             shoppingCartItemQuantityElement.value);
-          total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
+            total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
         });
         totalDelCarrito.innerHTML = `$${total .toFixed(2)}`;
 }
@@ -93,19 +94,21 @@ function metodoDePago () {
     let formaPago = document.getElementById('formaPago');
     let metodoPago = formaPago.value;
     document.getElementById('divPago').innerHTML = `USTED HA SELECCIONADO PAGAR CON ${metodoPago} <i class="bi bi-wallet2"></i> `
-    infoPago()
-    actualizoStorage();
+    infoPago();
 }
 function infoPago () {
-    document.getElementById ('divInfo').innerHTML = `PRONTO RECIBIRA UN EMAIL CON LOS PASOS A SEGUIR`
-    document.getElementById ('divGrax').innerHTML = `MUCHAS GRACIAS POR SU COMPRA <i class="bi bi-check"></i>`
+    Swal.fire({
+        icon: 'success',
+        title: 'Muchas Gracias Por Su Compra',
+        text: "PRONTO RECIBIRA UN EMAIL CON LOS PASOS A SEGUIR!",
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    })
 }
-const guardarLocalCarrito = () => {
-    localStorage.setItem("carrito", JSON.stringify(carrito))
-}
-
-
-
 let carrito = []
 const contenedorItems = document.querySelector(".contenedor")
 const rowCardis = document.querySelector(".heroCarro")
@@ -124,7 +127,7 @@ contenedorItems.addEventListener("click" , (e)=>{
         if(exist){
             const productt = carrito.map(product=>{
                 if(product.nombre === infoProd.nombre){
-                    product.cantidad.value++;
+                    product.cantidad++;
                     return product;
                 }else{
                     return product;
@@ -138,7 +141,52 @@ contenedorItems.addEventListener("click" , (e)=>{
     }
 })
 function actualizoStorage() { {
-    localStorage.setItem("carritoNew", JSON.stringify(carrito))
+    localStorage.setItem("carrito", JSON.stringify(carrito))
 }
+}
+function removeArray () {
+    carrito.pop()
 }
 
+let boton = document.getElementById("miBoton");
+boton.addEventListener("click", function() {
+    actualizoStorage();
+});
+/*let botonVaciar = document.getElementById("miBotonVaciar");
+botonVaciar.addEventListener("click", function() {
+    carrito = [];
+    actualizoStorage();
+});*/
+function cargarCarrito () {
+        const carritoRow2 = document.createElement('div');
+        const templateCards2 = `
+    <div class="row shoppingCartItem">
+            <div class="col-6">
+                <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                    <img src=${carrito.img} class="shopping-cart-image">
+                    <h6 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">${carrito.nombre}</h6>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                    <p class="item-price mb-0 shoppingCartItemPrice">${carrito.precio}</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div
+                    class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
+                    <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
+                        value="1">
+                    <button class="btn btn-danger buttonDelete" type="button">X</button>
+                </div>
+            </div>
+        </div>`;
+        carritoRow2.innerHTML = templateCards2;
+        elementosCarritoCompra.append(carritoRow2);
+}
+function recuperoStorage() {
+    let carritoRecupero = localStorage.getItem("carrito")
+    if (carritoRecupero!== null) {
+        const carritoDeStorage = JSON.parse(carritoRecupero)
+        carrito.push(...carritoDeStorage)
+}}

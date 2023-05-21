@@ -136,3 +136,6 @@ footer {
     border-radius: 0.7rem;
     border-style:ridge;
 }
+.swal2-html-container{
+    color: white;
+}
